@@ -1,0 +1,85 @@
+version: '3'
+
+networks:
+    lancom:
+
+volumes:
+    environment-data:
+
+services:
+    apache2:
+        build:
+            context: ./ops/docker
+            dockerfile: Dockerfile
+        image: php:7.3.4-apache-stretch
+        container_name: lancom-apache-server
+        ports:
+            - "9200:80"
+            - "1443:443"
+        volumes:
+            - ./src:/var/www/html
+            - ./ops/config/apache/site-available/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+        depends_on: 
+            - mysql
+        networks:
+            - lancom
+    mysql:
+        image: mysql:5.7.22
+        container_name: lancom-mysql-server
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "6306:3306"
+        environment:
+            MYSQL_DATABASE: lancom
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root123
+            MYSQL_ROOT_PASSWORD: root123
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        networks:
+            - lancom
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:4.9
+        container_name: lancom-phpmyadmin
+        links:
+            - mysql:mysql
+        depends_on: 
+            - mysql
+        ports:
+            - "9201:80"
+        environment:
+            - PMA_HOST=mysql
+            - PMA_PORT=3306
+        networks:
+            - lancom
+    composer:
+        image: composer:latest
+        container_name: lancom-composer
+        volumes:
+            - ./src:/var/www/html
+        working_dir: /var/www/html
+        networks:
+            - lancom
+    npm:
+        image: node:12.18
+        container_name: lancom-npm
+        volumes: 
+            - ./src:/var/www/html
+        working_dir: /var/www/html
+        entrypoint: ['npm']
+        networks:
+            - lancom
+    artisan:
+        build:
+            context: ./ops/docker
+            dockerfile: Dockerfile
+        container_name: lancom-artisan
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            - mysql
+        working_dir: /var/www/html
+        entrypoint: ['/var/www/html/artisan']
+        networks:
+            - lancom
