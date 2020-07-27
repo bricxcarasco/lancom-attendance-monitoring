@@ -8,33 +8,16 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function verify(Request $request)
     {
-        $this->middleware('guest')->except('logout');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            if(Auth::user()->type == 0) {
+                return redirect()->route('admin.dashboard');
+            }
+            
+            return redirect()->route('user.dashboard');
+        } else {
+            return redirect()->route('user.login')->with('error', 'invalid username or password');
+        }
     }
 }

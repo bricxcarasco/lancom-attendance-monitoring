@@ -24,12 +24,12 @@
                             <h3 class="card-title">Login</h3>
                         </div>
                         
-                        <form role="form">
+                        <form role="form" action="{{ route('login') }}" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="email-address">Email address</label>
-                                    <input type="email" class="form-control" id="email-address"
-                                        placeholder="Enter email-address">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
