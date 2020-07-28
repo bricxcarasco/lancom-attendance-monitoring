@@ -8,7 +8,15 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    public function verify(Request $request)
+    public function index() {
+        return view('login');
+    }
+
+    public function homeRedirect() {
+        return redirect('login');
+    }
+
+    public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if(Auth::user()->type == 0) {

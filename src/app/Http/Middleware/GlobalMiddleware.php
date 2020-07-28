@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class TeacherMiddleware
+class GlobalMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class TeacherMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!empty(Auth::user()) && Auth::user()->user_type == 2)
+        if(!empty(Auth::user()))
             return $next($request);
         else
             return redirect()->back();
