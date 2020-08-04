@@ -89,14 +89,14 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <form action="{{ route('logout.auth') }}" method="POST">
+                    <form id="logout-user-form" action="{{ route('logout.auth') }}" method="POST">
                         @csrf
-                        <button type="submit" class="nav-link">
+                        <a class="nav-link logout-user-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>
                                 Logout
                             </p>
-                        </button>
+                        </a>
                     </form>
                 </li>
             </ul>
