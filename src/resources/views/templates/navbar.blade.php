@@ -25,7 +25,6 @@
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                 </li>
@@ -88,6 +87,17 @@
                             Salary Management
                         </p>
                     </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <form action="{{ route('logout.auth') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Logout
+                            </p>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>

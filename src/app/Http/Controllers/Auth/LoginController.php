@@ -3,29 +3,40 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Helpers\Constant;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
         return view('login');
     }
 
-    public function homeRedirect() {
+    public function homeRedirect() 
+    {
         return redirect('login');
     }
 
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            if(Auth::user()->type == 0) {
+            $auth = Auth::user();
+            if($auth->user_type == 1)
                 return redirect()->route('admin.dashboard');
-            }
-            
-            return redirect()->route('user.dashboard');
+            elseif ($auth->user_type == 2)
+                return redirect()->route('teacher.dashboard');
+            elseif ($auth->user_type == 3)
+                return redirect()->route('student.dashboard');
         } else {
-            return redirect()->route('user.login')->with('error', 'invalid username or password');
+            return redirect()->route('login.page')->with('error', Constant::ERROR_UNAUTHORIZED);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

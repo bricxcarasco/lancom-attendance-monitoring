@@ -19,6 +19,6 @@ class GlobalMiddleware
         if(!empty(Auth::user()))
             return $next($request);
         else
-            return redirect()->back();
+            return redirect()->route('login.page');
     }
 }
