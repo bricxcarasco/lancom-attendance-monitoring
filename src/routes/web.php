@@ -11,6 +11,18 @@ Route::middleware('global')->group(function() {
 
     Route::middleware('admin')->prefix('admin')->group(function() {
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
+        Route::prefix('lessons_calendar')->group(function() {
+            Route::get('/teacher', 'Admin\LessonTeacherController@index')->name('admin.lessons_calendar.teacher.index');
+            Route::get('/student', 'Admin\LessonStudentController@index')->name('admin.lessons_calendar.student.index');
+        });
+        Route::prefix('users')->group(function() {
+            Route::get('/administrator', 'Admin\UserAdministratorController@index')->name('admin.users.administrator.index');
+            Route::get('/teacher', 'Admin\UserTeacherController@index')->name('admin.users.teacher.index');
+            Route::get('/student', 'Admin\UserStudentController@index')->name('admin.users.student.index');
+        });
+        Route::prefix('salary')->group(function() {
+            Route::get('/', 'Admin\SalaryManagementController@index')->name('admin.salary.index');
+        });
     });
     
     Route::middleware('teacher')->prefix('teacher')->group(function() {
