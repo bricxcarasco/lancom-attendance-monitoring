@@ -308,3 +308,7 @@
 </div>
 
 @include('templates.footer')
+
+<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
+@include('templates.footer-end')

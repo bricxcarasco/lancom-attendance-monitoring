@@ -28,14 +28,4 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('dist/js/demo.js') }}"></script>
-</body>
-
-<script>
-    document.querySelector('.logout-user-link').addEventListener('click', (event) => {
-        document.getElementById('logout-user-form').submit();
-    });
-</script>
-
-</html>
