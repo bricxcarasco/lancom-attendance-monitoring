@@ -5,9 +5,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.auth');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout.auth');
 
 Route::middleware('global')->group(function() {
-    Route::get('/', function() {
-        return view('login.page');
-    });
+    Route::get('/', 'Auth\LoginController@index');
 
     Route::middleware('admin')->prefix('admin')->group(function() {
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
