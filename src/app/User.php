@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getActiveAdministratorAccounts()
+    {
+        return self::where('user_type', 1)->where('is_delete', 0)->get();
+    }
 }
