@@ -52,6 +52,7 @@
                         <tbody>
                             @foreach ($users as $user)    
                                 <tr>
+                                    <input type="hidden" class="account-id" value="{{ $user->id }}">
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->created_at }}</td>
