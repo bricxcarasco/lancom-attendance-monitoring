@@ -34,6 +34,20 @@ class UserAdministratorController extends Controller
         }
     }
 
+    public function changePassword(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Log::info(['CHANGE ACCOUNT PASSWORD' => $request->all()]);
+            return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['CHANGED_PASSWORD']);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
+
     public function enable(Request $request)
     {
         try {

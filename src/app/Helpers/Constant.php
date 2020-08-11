@@ -10,6 +10,7 @@ class Constant {
     const ACCOUNTS = [
         'ADDED' => 'Account successfully added',
         'UPDATED' => 'Account successfully updated',
+        'CHANGED_PASSWORD' => 'Account password successfully updated',
         'ENABLED' => 'Account successfully enabled',
         'DISABLED' => 'Account successfully disabled',
         'DELETED' => 'Account successfully deleted',

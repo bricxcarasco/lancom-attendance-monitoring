@@ -177,33 +177,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            <form id="changePasswordAccountForm" action="{{ route('admin.users.administrator.change_password') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <input type="hidden" id="change-password-account-id" name="id"/>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" class="form-control account-change-password">
                         </div>
-                        <input type="password" class="form-control account-change-password">
+                        <span class="error-span-message error-account-change-password"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="confirm_password" class="form-control account-change-confirm-password">
+                        </div>
+                        <span class="error-span-message error-account-change-confirm-password"></span>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input type="password" class="form-control account-change-confirm-password">
-                    </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-change-password">Change Password</button>
                 </div>
-
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-change-password">Change Password</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

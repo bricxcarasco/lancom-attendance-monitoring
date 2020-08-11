@@ -15,6 +15,7 @@ $(document).ready(function () {
     $('#tableUserAdministratorAccount').on('click', '.btn-change-password-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#change-password-account-modal').modal('show');
+        $('#change-password-account-modal #change-password-account-id').val(id);
     });
 
     $('#tableUserAdministratorAccount').on('click', '.btn-enable-account', function() {
@@ -59,7 +60,23 @@ $(document).ready(function () {
     });
 
     $('#change-password-account-modal').on('click', '.btn-modal-change-password', () => {
-        console.log('Hello');
+        $('.error-span-message').text("");
+
+        let password = $('#change-password-account-modal .account-change-password').val();
+        let confirm_password = $('#change-password-account-modal .account-change-confirm-password').val();
+
+        if (!password || password !== confirm_password) {
+            if (!password) {
+                $('.error-account-change-password').text("Password is required");
+            }
+
+            if (password !== confirm_password) {
+                $('.error-account-change-confirm-password').text("Passwords not matched");
+            }
+        } else {
+            $('form#changePasswordAccountForm').submit();
+        }
+
     });
 
     $('#enable-account-modal').on('click', '.btn-modal-enable-account', () => {
@@ -104,7 +121,7 @@ $(document).ready(function () {
             }
 
             if (password !== confirm_password) {
-                $('.error-add-account-confirm-password').text("Password not matched");
+                $('.error-add-account-confirm-password').text("Passwords not matched");
             }
         } else {
             return true;
