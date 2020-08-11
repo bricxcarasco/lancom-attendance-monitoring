@@ -107,63 +107,73 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label>Name</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="far fa-user"></i></span>
+            <form id="editAccountForm" action="{{ route('admin.users.administrator.edit') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <input type="hidden" id="edit-account-id" name="id"/>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="far fa-user"></i></span>
+                            </div>
+                            <input type="text" name="name" class="form-control account-edit-name">
                         </div>
-                        <input type="text" class="form-control account-edit-name">
+                        <span class="error-span-message error-edit-account-name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" name="email" class="form-control account-edit-email">
+                        </div>
+                        <span class="error-span-message error-edit-account-email"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>Birthdate</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                                </div>
+                                <input type="date" name="birthdate" class="form-control account-edit-birthdate" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                            </div>
+                            <span class="error-span-message error-edit-account-birthdate"></span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>Contact Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="text" name="contact" class="form-control account-edit-contact">
+                            </div>
+                            <span class="error-span-message error-edit-account-contact"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                            </div>
+                            <input type="text" name="address" class="form-control account-edit-address">
+                        </div>
+                        <span class="error-span-message error-edit-account-address"></span>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label>Email address</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control account-edit-email">
-                    </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-edit-account">Update Account</button>
                 </div>
-
-                <div class="form-group">
-                    <label>Birthdate</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
-                        </div>
-                        <input type="date" class="form-control account-edit-birthdate" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Address</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control account-edit-address">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Contact Number</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="text" class="form-control account-edit-contact">
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-edit-account">Update Account</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

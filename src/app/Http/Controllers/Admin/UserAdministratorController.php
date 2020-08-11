@@ -16,6 +16,18 @@ class UserAdministratorController extends Controller
         $users = User::getActiveAdministratorAccounts();
         return view('admin.users.administrator', compact('users'));
     }
+    
+    public function getUser($id)
+    {
+        try {
+            $user = User::find($id);
+            Log::info(['GET ACCOUNT' => $user]);
+            return $user;
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
 
     public function add(Request $request)
     {
@@ -28,6 +40,24 @@ class UserAdministratorController extends Controller
             User::create($request->all());
             Log::info($request->all());
             return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['ADDED']);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
+
+    public function edit(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->birthdate = $request->birthdate;
+            $user->address = $request->address;
+            $user->contact = $request->contact;
+            $user->save();
+            Log::info(['EDIT ACCOUNT' => $request->all()]);
+            return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['UPDATED']);
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);

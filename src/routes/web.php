@@ -15,7 +15,9 @@ Route::middleware('global')->group(function() {
         });
         Route::prefix('users')->group(function() {
             Route::get('/administrator', 'Admin\UserAdministratorController@index')->name('admin.users.administrator.index');
+            Route::get('/administrator/{id}', 'Admin\UserAdministratorController@getUser')->name('admin.users.administrator.get_user');
             Route::post('/administrator', 'Admin\UserAdministratorController@add')->name('admin.users.administrator.add');
+            Route::put('/administrator', 'Admin\UserAdministratorController@edit')->name('admin.users.administrator.edit');
             Route::put('/administrator/change_password', 'Admin\UserAdministratorController@changePassword')->name('admin.users.administrator.change_password');
             Route::delete('/administrator', 'Admin\UserAdministratorController@delete')->name('admin.users.administrator.delete');
             Route::patch('/administrator/enable', 'Admin\UserAdministratorController@enable')->name('admin.users.administrator.enable');

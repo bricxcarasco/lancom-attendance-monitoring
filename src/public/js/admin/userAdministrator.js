@@ -9,7 +9,20 @@ $(document).ready(function () {
     // Table Buttons
     $('#tableUserAdministratorAccount').on('click', '.btn-edit-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
-        $('#edit-account-modal').modal('show');
+        $.ajax({
+            url: `administrator/${id}`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(user) {
+                $('#edit-account-modal').modal('show');
+                $('#edit-account-modal #edit-account-id').val(user.id);
+                $('#edit-account-modal .account-edit-name').val(user.name);
+                $('#edit-account-modal .account-edit-email').val(user.email);
+                $('#edit-account-modal .account-edit-birthdate').val(user.birthdate);
+                $('#edit-account-modal .account-edit-address').val(user.address);
+                $('#edit-account-modal .account-edit-contact').val(user.contact);
+            }
+        });
     });
 
     $('#tableUserAdministratorAccount').on('click', '.btn-change-password-account', function() {
@@ -56,7 +69,19 @@ $(document).ready(function () {
     });
 
     $('#edit-account-modal').on('click', '.btn-modal-edit-account', () => {
-        console.log('Hello');
+        $('.error-span-message').text("");
+
+        let accountEditName = $('#edit-account-modal .account-edit-name').val();
+        let accountEditEmail = $('#edit-account-modal .account-edit-email').val();
+        let accountEditBirthdate = $('#edit-account-modal .account-edit-birthdate').val();
+        let accountEditAddress = $('#edit-account-modal .account-edit-address').val();
+        let accountEditContact = $('#edit-account-modal .account-edit-contact').val();
+
+        let accountEditValidate = accountEditValidation(accountEditName, accountEditEmail, accountEditBirthdate, accountEditAddress, accountEditContact);
+
+        if (accountEditValidate) {
+            $('form#editAccountForm').submit();
+        }
     });
 
     $('#change-password-account-modal').on('click', '.btn-modal-change-password', () => {
@@ -122,6 +147,34 @@ $(document).ready(function () {
 
             if (password !== confirm_password) {
                 $('.error-add-account-confirm-password').text("Passwords not matched");
+            }
+        } else {
+            return true;
+        }
+    }
+
+    function accountEditValidation(name, email, birthdate, address, contact) {
+        if (!name || !email || !birthdate || !address || !contact || !validateEmail(email)) {
+            if (!name) {
+                $('.error-edit-account-name').text("Name is required");
+            }
+
+            if (!email) {
+                $('.error-edit-account-email').text("Email address is required");
+            } else if (!validateEmail(email)) {
+                $('.error-edit-account-email').text("Invalid email address format");
+            }
+
+            if (!birthdate) {
+                $('.error-edit-account-birthdate').text("Birthdate is required");
+            }
+
+            if (!contact) {
+                $('.error-edit-account-contact').text("Contact number is required");
+            }
+
+            if (!address) {
+                $('.error-edit-account-address').text("Address is required");
             }
         } else {
             return true;
