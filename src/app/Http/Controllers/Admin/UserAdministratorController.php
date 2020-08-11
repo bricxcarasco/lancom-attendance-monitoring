@@ -61,4 +61,18 @@ class UserAdministratorController extends Controller
             return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->is_delete = 1;
+            $user->save();
+            Log::info(['DELETE ACCOUNT' => $request->all()]);
+            return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['DELETED']);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
 }

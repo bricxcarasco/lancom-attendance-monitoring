@@ -267,13 +267,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p><i>Are you sure you want to delete this account?</i></p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-delete-account">Delete Account</button>
-            </div>
+            <form id="deleteAccountForm" action="{{ route('admin.users.administrator.delete') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <p><i>Are you sure you want to delete this account?</i></p>
+                    <input type="hidden" id="delete-account-id" name="id"/>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-delete-account">Delete Account</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

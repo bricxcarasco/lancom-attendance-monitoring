@@ -32,6 +32,7 @@ $(document).ready(function () {
     $('#tableUserAdministratorAccount').on('click', '.btn-delete-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#delete-account-modal').modal('show');
+        $('#delete-account-modal #delete-account-id').val(id);
     });
 
     // Modal Buttons
@@ -70,7 +71,7 @@ $(document).ready(function () {
     });
 
     $('#delete-account-modal').on('click', '.btn-modal-delete-account', () => {
-        console.log('Hello');
+        $('form#deleteAccountForm').submit();
     });
 
     // Process Functions
@@ -108,10 +109,6 @@ $(document).ready(function () {
         } else {
             return true;
         }
-    }
-
-    function addAcount(name, email, birthdate, address, contact, password) {
-        
     }
 
     // Global Functions
