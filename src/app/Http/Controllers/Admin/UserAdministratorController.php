@@ -33,4 +33,32 @@ class UserAdministratorController extends Controller
             return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
         }
     }
+
+    public function enable(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->is_active = 0;
+            $user->save();
+            Log::info(['ENABLE ACCOUNT' => $request->all()]);
+            return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['ENABLED']);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
+
+    public function disable(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->is_active = 1;
+            $user->save();
+            Log::info(['DISABLE ACCOUNT' => $request->all()]);
+            return redirect()->route('admin.users.administrator.index')->with('success', Constant::ACCOUNTS['DISABLED']);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return redirect()->route('admin.users.administrator.index')->with('error', Constant::ERROR_SERVER);
+        }
+    }
 }

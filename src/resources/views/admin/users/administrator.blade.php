@@ -53,7 +53,7 @@
                         <tbody>
                             @foreach ($users as $user)    
                                 <tr>
-                                    <input type="hidden" class="account-id" value="{{ $user->id }}">
+                                    <input type="hidden" class="account-id" id="{{ $user->id }}" value="{{ $user->id }}">
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->created_at }}</td>
@@ -71,7 +71,7 @@
                                             <button class="btn btn-sm btn-success btn-change-password-account"><i class="fas fa-edit"></i> Change Password</button>
                                             <button class="btn btn-sm btn-warning btn-disable-account"><i class="fas fa-thumbs-down"></i> Disable</button>
                                         @else
-                                            <button class="btn btn-sm btn-success btn-enable-account"><i class="fas fa-thumbs-up"></i> Enable</button>
+                                            <button class="btn btn-sm btn-info btn-enable-account"><i class="fas fa-thumbs-up"></i> Enable</button>
                                         @endif
                                         <button class="btn btn-sm btn-danger btn-delete-account"><i class="fas fa-trash"></i> Delete</button>
                                     </td>

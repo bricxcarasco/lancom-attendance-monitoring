@@ -23,12 +23,16 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $auth = Auth::user();
-            if($auth->user_type == 1)
-                return redirect()->route('admin.dashboard');
-            elseif ($auth->user_type == 2)
-                return redirect()->route('teacher.dashboard');
-            elseif ($auth->user_type == 3)
-                return redirect()->route('student.dashboard');
+            if ($auth->is_active === 0) {
+                if($auth->user_type == 1)
+                    return redirect()->route('admin.dashboard');
+                elseif ($auth->user_type == 2)
+                    return redirect()->route('teacher.dashboard');
+                elseif ($auth->user_type == 3)
+                    return redirect()->route('student.dashboard');
+            } else {
+                return redirect()->route('login.page')->with('error', Constant::ACCOUNTS['INACTIVE_ACCOUNT']);
+            }
         } else {
             return redirect()->route('login.page')->with('error', Constant::ERROR_UNAUTHORIZED);
         }

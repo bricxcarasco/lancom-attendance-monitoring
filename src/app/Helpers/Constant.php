@@ -12,7 +12,8 @@ class Constant {
         'UPDATED' => 'Account successfully updated',
         'ENABLED' => 'Account successfully enabled',
         'DISABLED' => 'Account successfully disabled',
-        'DELETED' => 'Account successfully deleted'
+        'DELETED' => 'Account successfully deleted',
+        'INACTIVE_ACCOUNT' => 'Account has been inactive'
     ];
 
 }

@@ -217,13 +217,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p><i>Are you sure you want to enable this account?</i></p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-enable-account">Enable Account</button>
-            </div>
+            <form id="enableAccountForm" action="{{ route('admin.users.administrator.enable') }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body">
+                    <input type="hidden" id="enable-account-id" name="id"/>
+                    <p><i>Are you sure you want to enable this account?</i></p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-enable-account">Enable Account</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -237,13 +242,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p><i>Are you sure you want to disable this account?</i></p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-disable-account">Disable Account</button>
-            </div>
+            <form id="disableAccountForm" action="{{ route('admin.users.administrator.disable') }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body">
+                    <p><i>Are you sure you want to disable this account?</i></p>
+                    <input type="hidden" id="disable-account-id" name="id"/>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-disable-account">Disable Account</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

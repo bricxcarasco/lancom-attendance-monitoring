@@ -16,6 +16,8 @@ Route::middleware('global')->group(function() {
         Route::prefix('users')->group(function() {
             Route::get('/administrator', 'Admin\UserAdministratorController@index')->name('admin.users.administrator.index');
             Route::post('/administrator', 'Admin\UserAdministratorController@add')->name('admin.users.administrator.add');
+            Route::patch('/administrator/enable', 'Admin\UserAdministratorController@enable')->name('admin.users.administrator.enable');
+            Route::patch('/administrator/disable', 'Admin\UserAdministratorController@disable')->name('admin.users.administrator.disable');
 
             Route::get('/teacher', 'Admin\UserTeacherController@index')->name('admin.users.teacher.index');
             Route::get('/student', 'Admin\UserStudentController@index')->name('admin.users.student.index');

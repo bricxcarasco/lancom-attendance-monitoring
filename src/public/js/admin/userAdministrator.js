@@ -7,27 +7,29 @@ $(function () {
 
 $(document).ready(function () {
     // Table Buttons
-    $('#tableUserAdministratorAccount').on('click', '.btn-edit-account', () => {
+    $('#tableUserAdministratorAccount').on('click', '.btn-edit-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#edit-account-modal').modal('show');
     });
 
-    $('#tableUserAdministratorAccount').on('click', '.btn-change-password-account', () => {
+    $('#tableUserAdministratorAccount').on('click', '.btn-change-password-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#change-password-account-modal').modal('show');
     });
 
-    $('#tableUserAdministratorAccount').on('click', '.btn-enable-account', () => {
+    $('#tableUserAdministratorAccount').on('click', '.btn-enable-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#enable-account-modal').modal('show');
+        $('#enable-account-modal #enable-account-id').val(id);
     });
 
-    $('#tableUserAdministratorAccount').on('click', '.btn-disable-account', () => {
+    $('#tableUserAdministratorAccount').on('click', '.btn-disable-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#disable-account-modal').modal('show');
+        $('#disable-account-modal #disable-account-id').val(id);
     });
 
-    $('#tableUserAdministratorAccount').on('click', '.btn-delete-account', () => {
+    $('#tableUserAdministratorAccount').on('click', '.btn-delete-account', function() {
         let id = $(this).closest('tr').find('input[type=hidden]').val();
         $('#delete-account-modal').modal('show');
     });
@@ -60,11 +62,11 @@ $(document).ready(function () {
     });
 
     $('#enable-account-modal').on('click', '.btn-modal-enable-account', () => {
-        console.log('Hello');
+        $('form#enableAccountForm').submit();
     });
 
     $('#disable-account-modal').on('click', '.btn-modal-disable-account', () => {
-        console.log('Hello');
+        $('form#disableAccountForm').submit();
     });
 
     $('#delete-account-modal').on('click', '.btn-modal-delete-account', () => {
