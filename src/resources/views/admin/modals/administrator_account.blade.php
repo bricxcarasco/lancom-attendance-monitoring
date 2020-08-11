@@ -7,83 +7,93 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label>Name</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="far fa-user"></i></span>
+            <form id="addAccountForm" action="{{ route('admin.users.administrator.add') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="far fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control account-add-name" name="name">
                         </div>
-                        <input type="text" class="form-control account-add-name">
+                        <span class="error-span-message error-add-account-name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control account-add-email" name="email">
+                        </div>
+                        <span class="error-span-message error-add-account-email"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>Birthdate</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                                </div>
+                                <input type="date" class="form-control account-add-birthdate" name="birthdate" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                            </div>
+                            <span class="error-span-message error-add-account-birthdate"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Contact Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="text" class="form-control account-add-contact" name="contact">
+                            </div>
+                            <span class="error-span-message error-add-account-contact"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control account-add-address" name="address">
+                        </div>
+                        <span class="error-span-message error-add-account-address"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control account-add-password" name="password">
+                            </div>
+                            <span class="error-span-message error-add-account-password"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Confirm Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control account-add-confirm-password">
+                            </div>
+                            <span class="error-span-message error-add-account-confirm-password"></span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label>Email address</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control account-add-email">
-                    </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-add-account">Add Account</button>
                 </div>
-
-                <div class="form-group">
-                    <label>Birthdate</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
-                        </div>
-                        <input type="date" class="form-control account-add-birthdate" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Address</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control account-add-address">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Contact Number</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="text" class="form-control account-add-contact">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input type="password" class="form-control account-add-password">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input type="password" class="form-control account-add-confirm-password">
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-modal-add-account">Add Account</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

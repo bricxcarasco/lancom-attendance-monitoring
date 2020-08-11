@@ -15,6 +15,8 @@ Route::middleware('global')->group(function() {
         });
         Route::prefix('users')->group(function() {
             Route::get('/administrator', 'Admin\UserAdministratorController@index')->name('admin.users.administrator.index');
+            Route::post('/administrator', 'Admin\UserAdministratorController@add')->name('admin.users.administrator.add');
+
             Route::get('/teacher', 'Admin\UserTeacherController@index')->name('admin.users.teacher.index');
             Route::get('/student', 'Admin\UserStudentController@index')->name('admin.users.student.index');
         });

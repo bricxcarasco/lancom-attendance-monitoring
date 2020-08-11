@@ -17,6 +17,7 @@
                     </ol>
                 </div>
             </div>
+            @include('admin.templates.alerts')
         </div>
     </section>
     
