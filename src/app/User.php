@@ -28,4 +28,14 @@ class User extends Authenticatable
     {
         return self::where('user_type', 1)->where('is_delete', 0)->get();
     }
+
+    public static function getActiveTeacherAccounts()
+    {
+        return self::where('user_type', 2)->where('is_delete', 0)->get();
+    }
+
+    public static function getActiveStudentAccounts()
+    {
+        return self::where('user_type', 3)->where('is_delete', 0)->get();
+    }
 }

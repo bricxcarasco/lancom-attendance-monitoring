@@ -24,7 +24,22 @@ Route::middleware('global')->group(function() {
             Route::patch('/administrator/disable', 'Admin\UserAdministratorController@disable')->name('admin.users.administrator.disable');
 
             Route::get('/teacher', 'Admin\UserTeacherController@index')->name('admin.users.teacher.index');
+            Route::get('/teacher/{id}', 'Admin\UserTeacherController@getUser')->name('admin.users.teacher.get_user');
+            Route::post('/teacher', 'Admin\UserTeacherController@add')->name('admin.users.teacher.add');
+            Route::put('/teacher', 'Admin\UserTeacherController@edit')->name('admin.users.teacher.edit');
+            Route::put('/teacher/change_password', 'Admin\UserTeacherController@changePassword')->name('admin.users.teacher.change_password');
+            Route::delete('/teacher', 'Admin\UserTeacherController@delete')->name('admin.users.teacher.delete');
+            Route::patch('/teacher/enable', 'Admin\UserTeacherController@enable')->name('admin.users.teacher.enable');
+            Route::patch('/teacher/disable', 'Admin\UserTeacherController@disable')->name('admin.users.teacher.disable');
+
             Route::get('/student', 'Admin\UserStudentController@index')->name('admin.users.student.index');
+            Route::get('/student/{id}', 'Admin\UserStudentController@getUser')->name('admin.users.student.get_user');
+            Route::post('/student', 'Admin\UserStudentController@add')->name('admin.users.student.add');
+            Route::put('/student', 'Admin\UserStudentController@edit')->name('admin.users.student.edit');
+            Route::put('/student/change_password', 'Admin\UserStudentController@changePassword')->name('admin.users.student.change_password');
+            Route::delete('/student', 'Admin\UserStudentController@delete')->name('admin.users.student.delete');
+            Route::patch('/student/enable', 'Admin\UserStudentController@enable')->name('admin.users.student.enable');
+            Route::patch('/student/disable', 'Admin\UserStudentController@disable')->name('admin.users.student.disable');
         });
         Route::prefix('salary')->group(function() {
             Route::get('/', 'Admin\SalaryManagementController@index')->name('admin.salary.index');
