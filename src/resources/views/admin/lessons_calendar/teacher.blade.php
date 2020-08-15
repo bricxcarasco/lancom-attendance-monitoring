@@ -32,52 +32,46 @@
                         </button>
                     </div>
                 </div>
-                
                 <div class="card-body p-0">
                     <table>
                         <thead>
                             <tr>
                                 <th>PH Time</th>
-                                <th>
-                                    <span class="day">1</span>
-                                    <span class="long">Monday</span>
-                                    <span class="short">Mon</span>
-                                </th>
-                                <th>
-                                    <span class="day active">2</span>
-                                    <span class="long">Tuesday</span>
-                                    <span class="short">Tue</span>
-                                </th>
-                                <th>
-                                    <span class="day">3</span>
-                                    <span class="long">Wednesday</span>
-                                    <span class="short">Wed</span>
-                                </th>
-                                <th>
-                                    <span class="day">4</span>
-                                    <span class="long">Thursday</span>
-                                    <span class="short">Thurs</span>
-                                </th>
-                                <th>
-                                    <span class="day">5</span>
-                                    <span class="long">Friday</span>
-                                    <span class="short">Fri</span>
-                                </th>
-                                <th>
-                                    <span class="day">6</span>
-                                    <span class="long">Saturday</span>
-                                    <span class="short">Sat</span>
-                                </th>
-                                <th>
-                                    <span class="day">7</span>
-                                    <span class="long">Sunday</span>
-                                    <span class="short">Sun</span>
-                                </th>
+                                @foreach ($weeklyData['week'] as $week)
+                                    <th>
+                                        <span class="day">{{ $week->date }}</span>
+                                        <span class="long">{{ $week->day }}</span>
+                                        <span class="short">{{ $week->day_abbr }}</span>
+                                    </th>    
+                                @endforeach
                                 <th>JA Time</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach ($weeklyData['time'] as $time)    
+                                <tr>
+                                    <td class="hour" rowspan="2"><span>{{ key($time) }}</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="hour" rowspan="2"><span></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+
+                            {{-- <tr>
                                 <td class="hour" rowspan="2"><span>08:00</span></td>
                                 <td></td>
                                 <td></td>
@@ -297,7 +291,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>

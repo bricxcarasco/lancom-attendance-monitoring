@@ -25,10 +25,10 @@ table thead tr th:last-child {
 
 table thead tr th .day {
     display: block;
-    font-size: 1.2em;
+    font-size: .9em;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
     margin: 0 auto 5px;
     padding: 5px;
     line-height: 1.8;
@@ -74,7 +74,7 @@ table tbody tr td:last-child {
 }
 
 table tbody tr td.hour {
-    font-size: 2em;
+    font-size: 1em;
     padding: 0;
     color: #626e7e;
     background: #fff;
@@ -110,7 +110,8 @@ table tbody tr td.hour span {
     }
 
     table thead tr th .day {
-        display: block;
+        display: none;
+        /* display: block; */
         font-size: 1.2em;
         border-radius: 50%;
         width: 20px;
@@ -125,7 +126,7 @@ table tbody tr td.hour span {
     }
 
     table tbody tr td.hour {
-        font-size: 1.7em;
+        font-size: .9em;
     }
 
     table tbody tr td.hour span {

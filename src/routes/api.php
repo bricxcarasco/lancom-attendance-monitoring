@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/calendar', 'Api\IndexController@index');
+Route::get('/calendar/{date}', 'Api\IndexController@index');

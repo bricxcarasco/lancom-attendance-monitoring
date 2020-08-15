@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Classes\Week;
@@ -10,9 +10,9 @@ use App\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
-class IndexController extends Controller
+class CalendarController extends Controller
 {
-    public function index($date)
+    public static function getWeekList($date)
     {
         $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
         $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
@@ -32,7 +32,6 @@ class IndexController extends Controller
             $week->day = $date->format('l');
             $week->day_number = Constant::DAYS_IN_NUMBER[$date->format('l')];
             $week->day_abbr = Constant::DAYS_ABBR[$date->format('l')];
-            $week->schedule = Schedule::where('user_id', 2)->where('schedule_date', $date->format('Y-m-d'))->get();
             $weeklyData['week'][$date->format('Y-m-d')] = $week;
         }
 
@@ -52,5 +51,4 @@ class IndexController extends Controller
 
         return $weeklyData;
     }
-
 }
