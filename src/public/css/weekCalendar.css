@@ -56,7 +56,13 @@ table tbody tr:nth-child(odd) {
     background: #c8cdd4;
 }
 
-table tbody tr:nth-child(2n + 0) td {
+/* table tbody tr:nth-child(2n + 0) td {
+    border-bottom: 1px solid #626e7e;
+} */
+
+table tbody tr:nth-child(1n + 0) td {
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-bottom: 1px solid #626e7e;
 }
 
