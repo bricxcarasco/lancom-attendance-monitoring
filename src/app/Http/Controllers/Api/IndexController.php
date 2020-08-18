@@ -49,7 +49,7 @@ class IndexController extends Controller
                     $newTimeClass->ph_time = $time;
                     $newTimeClass->ja_time = Constant::JA_TIME[$time];
                     $newTimeClass->data = $schedule;
-                    $timeData[$time][$date->format('Y-m-d')][] = $newTimeClass;
+                    $timeData[$time][$date->format('Y-m-d')] = $newTimeClass;
                 }
             }
         }

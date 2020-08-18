@@ -11,7 +11,13 @@ class LessonTeacherController extends Controller
 {
     public function index() 
     {
-        $date = Carbon::now()->subDay(5)->format('Y-m-d');
+        $date = Carbon::now()->format('Y-m-d');
+        $weeklyData = CalendarController::getWeekList($date);
+        return view('admin.lessons_calendar.teacher', compact('weeklyData'));
+    }
+
+    public function searchScheduleWithDate(Request $request, $date)
+    {
         $weeklyData = CalendarController::getWeekList($date);
         return view('admin.lessons_calendar.teacher', compact('weeklyData'));
     }

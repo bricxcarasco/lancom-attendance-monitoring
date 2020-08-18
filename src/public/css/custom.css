@@ -2,3 +2,17 @@
     color: red;
     font-style: italic;
 }
+
+.table-teacher-schedule {
+    margin-bottom: 0px;
+}
+
+.week-range-text {
+    padding-top: 10px;
+    padding-left: 10px; 
+}
+
+.pagination-schedule {
+    padding-top: 10px;
+    padding-right: 10px;
+}

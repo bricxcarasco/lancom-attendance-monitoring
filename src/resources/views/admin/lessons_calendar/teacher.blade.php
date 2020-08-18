@@ -33,7 +33,18 @@
                     </div>
                 </div>
                 <div class="card-body p-0">
-                    <table>
+
+                    <h3 class="float-left week-range-text">Week Range: <b>{{ $weeklyData['week_range'] }}</b></h3>
+
+                    <nav aria-label="Schedule Navigation Panel">
+                        <ul class="pagination float-right pagination-schedule">
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.search_date', ['date' => $weeklyData['prev_week_range']]) }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.index') }}">Now</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.search_date', ['date' => $weeklyData['next_week_range']]) }}">Next</a></li>
+                        </ul>
+                    </nav>
+
+                    <table class="table-teacher-schedule">
                         <thead>
                             <tr>
                                 <th>PH Time</th>
@@ -59,6 +70,7 @@
                                         @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
                                             <td id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
                                                 {{ $each_date->format('Y-m-d') }}
+                                                {{ $raw_time[$each_date->format('Y-m-d')]->data->user_id }}
                                             </td>
                                         @else
                                             <td id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}"></td>
@@ -75,6 +87,14 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <nav aria-label="Schedule Navigation Panel">
+                        <ul class="pagination float-right pagination-schedule">
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.search_date', ['date' => $weeklyData['prev_week_range']]) }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.index') }}">Now</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.teacher.search_date', ['date' => $weeklyData['next_week_range']]) }}">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

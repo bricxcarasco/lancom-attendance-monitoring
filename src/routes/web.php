@@ -11,6 +11,7 @@ Route::middleware('global')->group(function() {
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
         Route::prefix('lessons_calendar')->group(function() {
             Route::get('/teacher', 'Admin\LessonTeacherController@index')->name('admin.lessons_calendar.teacher.index');
+            Route::get('/teacher/{date}', 'Admin\LessonTeacherController@searchScheduleWithDate')->name('admin.lessons_calendar.teacher.search_date');
             Route::get('/student', 'Admin\LessonStudentController@index')->name('admin.lessons_calendar.student.index');
         });
         Route::prefix('users')->group(function() {
