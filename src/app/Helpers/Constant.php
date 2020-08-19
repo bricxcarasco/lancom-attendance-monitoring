@@ -64,5 +64,12 @@ class Constant {
         "05:00" => "06:00",
         "06:00" => "07:00"
     ];
+
+    const LEAVE_TYPE = [
+        1 => 'Sick Leave',
+        2 => 'Vacation Leave',
+        3 => 'Emergency Leave',
+        4 => 'Others'
+    ];
     
 }

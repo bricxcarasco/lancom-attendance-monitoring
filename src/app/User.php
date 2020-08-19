@@ -24,6 +24,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
     public static function getActiveAdministratorAccounts()
     {
         return self::where('user_type', 1)->where('is_delete', 0)->get();

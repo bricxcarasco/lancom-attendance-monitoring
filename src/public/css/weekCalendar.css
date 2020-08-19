@@ -61,8 +61,8 @@ table tbody tr:nth-child(odd) {
 } */
 
 table tbody tr:nth-child(1n + 0) td {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    /* padding-top: 30px;
+    padding-bottom: 30px; */
     border-bottom: 1px solid #626e7e;
 }
 

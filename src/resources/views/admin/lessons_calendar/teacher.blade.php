@@ -68,12 +68,17 @@
                                     </td>
                                     @foreach ($weeklyData['week_dates'] as $each_date)
                                         @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
-                                            <td id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
-                                                {{ $each_date->format('Y-m-d') }}
-                                                {{ $raw_time[$each_date->format('Y-m-d')]->data->user_id }}
+                                            <td class="td-schedule" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
+                                                @foreach ($raw_time[$each_date->format('Y-m-d')]->data as $data)
+                                                    @if (isset($data->units))
+                                                        <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge badge-pill badge-info lessonTrigger">{{ $data->user->name }}</span><br/>
+                                                    @else
+                                                        <span onclick="scheduleTrigger(this.id)" id="{{ $data->id }}" class="badge badge-pill badge-warning scheduleTrigger">{{ $data->user->name }}</span><br/>
+                                                    @endif
+                                                @endforeach
                                             </td>
                                         @else
-                                            <td id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}"></td>
+                                            <td onclick="" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}" title="{{ $each_date->format('Y-m-d')." ".$raw_time['time']  }}"></td>
                                         @endif
                                     @endforeach
                                     <td class="hour">
@@ -101,6 +106,7 @@
     </section>
 </div>
 
+@include('admin.modals.teacher_lessons')
 @include('templates.footer')
 
 <script src="{{ asset('js/admin/lessonsTeacher.js') }}"></script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Classes\Week;
 use App\Http\Controllers\Classes\Time;
 use App\Helpers\Constant;
+use App\Lesson;
 use App\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -42,13 +43,15 @@ class IndexController extends Controller
         foreach(Constant::PH_TIME AS $time) {
             $timeData[$time]['time'] = $time;
             foreach ($period as $date) {
-                $schedule = Schedule::where('user_id', 2)->where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->first();
-                if ($schedule) {
+                $schedules = Schedule::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
+                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
+                $merged_schedules_lessons = $schedules->merge($lessons);
+                if (count($merged_schedules_lessons) > 0) {
                     $newTimeClass = new Time();
                     $newTimeClass->date = $date->format('Y-m-d');
                     $newTimeClass->ph_time = $time;
                     $newTimeClass->ja_time = Constant::JA_TIME[$time];
-                    $newTimeClass->data = $schedule;
+                    $newTimeClass->data = $merged_schedules_lessons;
                     $timeData[$time][$date->format('Y-m-d')] = $newTimeClass;
                 }
             }
