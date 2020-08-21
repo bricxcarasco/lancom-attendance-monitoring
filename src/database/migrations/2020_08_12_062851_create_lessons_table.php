@@ -21,12 +21,12 @@ class CreateLessonsTable extends Migration
             $table->string('schedule_date');
             $table->string('schedule_time');
             $table->string('units');
-            $table->string('teacher_login')->nullable();
-            $table->string('teacher_logout')->nullable();
-            $table->string('student_login')->nullable();
-            $table->string('student_logout')->nullable();
-            $table->integer('teacher_status')->nullable();
-            $table->integer('student_status')->nullable();
+            $table->string('teacher_login')->default('On-going');
+            $table->string('teacher_logout')->default('On-going');
+            $table->string('student_login')->default('On-going');
+            $table->string('student_logout')->default('On-going');
+            $table->integer('teacher_status')->default('0');
+            $table->integer('student_status')->default('0');
             $table->string('is_delete')->default('0');
             $table->timestamps();
         });

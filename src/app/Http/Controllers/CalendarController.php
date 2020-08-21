@@ -35,7 +35,6 @@ class CalendarController extends Controller
             $week->day = $date->format('l');
             $week->day_number = Constant::DAYS_IN_NUMBER[$date->format('l')];
             $week->day_abbr = Constant::DAYS_ABBR[$date->format('l')];
-            // $week->schedule = []; // Schedule::where('user_id', 2)->where('schedule_date', $date->format('Y-m-d'))->get();
             $weeklyData['week'][$date->format('Y-m-d')] = $week;
         }
 

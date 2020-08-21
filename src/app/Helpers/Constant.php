@@ -71,5 +71,23 @@ class Constant {
         3 => 'Emergency Leave',
         4 => 'Others'
     ];
+
+    const LESSON_STATUS = [
+        0 => 'On Going',
+        1 => 'Cancelled',
+        2 => 'Success',
+        3 => 'Not Active',
+        4 => 'No Show',
+        5 => 'Late'
+    ];
+
+    const LESSON_STATUS_COLOR_TYPE = [
+        0 => 'warning',
+        1 => 'danger',
+        2 => 'success',
+        3 => 'secondary',
+        4 => 'info',
+        5 => 'danger'
+    ];
     
 }

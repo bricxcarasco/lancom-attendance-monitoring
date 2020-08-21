@@ -21,6 +21,6 @@
     text-align: left;
 }
 
-.schedule-span {
+.schedule-span, .lesson-span {
     font-weight: bold;
 }
