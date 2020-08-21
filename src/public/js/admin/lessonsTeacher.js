@@ -8,11 +8,10 @@ $(document).ready(function() {
 
 function lessonTrigger(id) {
     $.ajax({
-        url: `lesson/${id}`,
+        url: `/admin/lessons_calendar/teacher/lesson/${id}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            console.log(data);
             $('#lesson-view-modal').modal('show');
             $('#lesson-view-modal .lesson-teacher').text(data.teacher_info.name);
             $('#lesson-view-modal .lesson-student').text(data.student_info.name);
@@ -41,7 +40,7 @@ function lessonTrigger(id) {
 
 function scheduleTrigger(id) {
     $.ajax({
-        url: `schedule/${id}`,
+        url: `/admin/lessons_calendar/teacher/schedule/${id}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {

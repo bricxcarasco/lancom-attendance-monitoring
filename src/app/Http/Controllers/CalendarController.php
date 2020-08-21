@@ -13,7 +13,7 @@ use Carbon\CarbonPeriod;
 
 class CalendarController extends Controller
 {
-    public static function getWeekList($date)
+    public static function getTeacherWeekList($date)
     {
         $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
         $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
@@ -51,6 +51,52 @@ class CalendarController extends Controller
                     $newTimeClass->ph_time = $time;
                     $newTimeClass->ja_time = Constant::JA_TIME[$time];
                     $newTimeClass->data = $merged_schedules_lessons;
+                    $timeData[$time][$date->format('Y-m-d')] = $newTimeClass;
+                }
+            }
+        }
+
+        $weeklyData['time'] = $timeData;
+
+        return $weeklyData;
+    }
+
+    public static function getStudentWeekList($date)
+    {
+        $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
+        $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
+        $currentEndDayOfWeek = Carbon::parse($carbonDate->endOfWeek())->format('Y-m-d');
+        $weekRange = Carbon::parse($carbonDate->startOfWeek())->format('M d'). " - ".Carbon::parse($carbonDate->endOfWeek())->format('M d, Y');
+
+        $period = CarbonPeriod::create($currentFirstDayOfWeek , $currentEndDayOfWeek);
+        
+        $weeklyData = [];
+        $weeklyData['week_range'] = $weekRange;
+        $weeklyData['week_dates'] = $period;
+        $weeklyData['next_week_range'] = Carbon::parse(Carbon::createFromFormat("Y-m-d", $date)->startOfWeek()->addWeek())->format('Y-m-d');
+        $weeklyData['prev_week_range'] = Carbon::parse(Carbon::createFromFormat("Y-m-d", $date)->startOfWeek()->subWeek())->format('Y-m-d');
+        $weeklyData['ph_time_range'] = Constant::PH_TIME;
+        $weeklyData['date_today'] = Carbon::now()->format('Y-m-d');
+        foreach ($period as $date) {
+            $week = new Week();
+            $week->date = $date->format('Y-m-d');
+            $week->day = $date->format('l');
+            $week->day_number = Constant::DAYS_IN_NUMBER[$date->format('l')];
+            $week->day_abbr = Constant::DAYS_ABBR[$date->format('l')];
+            $weeklyData['week'][$date->format('Y-m-d')] = $week;
+        }
+
+        $timeData = [];
+        foreach(Constant::PH_TIME AS $time) {
+            $timeData[$time]['time'] = $time;
+            foreach ($period as $date) {
+                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
+                if (count($lessons) > 0) {
+                    $newTimeClass = new Time();
+                    $newTimeClass->date = $date->format('Y-m-d');
+                    $newTimeClass->ph_time = $time;
+                    $newTimeClass->ja_time = Constant::JA_TIME[$time];
+                    $newTimeClass->data = $lessons;
                     $timeData[$time][$date->format('Y-m-d')] = $newTimeClass;
                 }
             }

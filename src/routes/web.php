@@ -15,6 +15,8 @@ Route::middleware('global')->group(function() {
             Route::get('/teacher/lesson/{id}', 'Admin\LessonTeacherController@searchLesson')->name('admin.lessons_calendar.teacher.lesson');
             Route::get('/teacher/schedule/{id}', 'Admin\LessonTeacherController@searchSchedule')->name('admin.lessons_calendar.teacher.schedule');
             Route::get('/student', 'Admin\LessonStudentController@index')->name('admin.lessons_calendar.student.index');
+            Route::get('/student/{date}', 'Admin\LessonStudentController@searchLessonWithDate')->name('admin.lessons_calendar.student.search_date');
+            Route::get('/student/lesson/{id}', 'Admin\LessonStudentController@searchLesson')->name('admin.lessons_calendar.student.lesson');
         });
         Route::prefix('users')->group(function() {
             Route::get('/administrator', 'Admin\UserAdministratorController@index')->name('admin.users.administrator.index');

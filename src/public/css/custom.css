@@ -24,3 +24,9 @@
 .schedule-span, .lesson-span {
     font-weight: bold;
 }
+
+.badge-calendar {
+    display:block; 
+    white-space: normal; 
+    word-wrap:break-word;
+}

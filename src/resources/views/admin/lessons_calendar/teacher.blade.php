@@ -71,9 +71,9 @@
                                             <td class="td-schedule" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
                                                 @foreach ($raw_time[$each_date->format('Y-m-d')]->data as $data)
                                                     @if (isset($data->units))
-                                                        <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge badge-pill badge-info lessonTrigger">{{ $data->user->name }}</span><br/>
+                                                        <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-info lessonTrigger">{{ $data->user->name }}</span><br/>
                                                     @else
-                                                        <span onclick="scheduleTrigger(this.id)" id="{{ $data->id }}" class="badge badge-pill badge-warning scheduleTrigger">{{ $data->user->name }}</span><br/>
+                                                        <span onclick="scheduleTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-warning scheduleTrigger">{{ $data->user->name }}</span><br/>
                                                     @endif
                                                 @endforeach
                                             </td>

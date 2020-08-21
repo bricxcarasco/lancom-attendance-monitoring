@@ -25,287 +25,84 @@
             <div class="card">
                 <div class="card-header bg-gradient-success">
                     <h3 class="card-title">Calendar</h3>
-
+                    
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
                 </div>
-
                 <div class="card-body p-0">
-                    <table>
+
+                    <h3 class="float-left week-range-text">Week Range: <b>{{ $weeklyData['week_range'] }}</b></h3>
+
+                    <nav aria-label="Schedule Navigation Panel">
+                        <ul class="pagination float-right pagination-schedule">
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.search_date', ['date' => $weeklyData['prev_week_range']]) }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.index') }}">Now</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.search_date', ['date' => $weeklyData['next_week_range']]) }}">Next</a></li>
+                        </ul>
+                    </nav>
+
+                    <table class="table-teacher-schedule">
                         <thead>
                             <tr>
                                 <th>PH Time</th>
-                                <th>
-                                    <span class="day">1</span>
-                                    <span class="long">Monday</span>
-                                    <span class="short">Mon</span>
-                                </th>
-                                <th>
-                                    <span class="day active">2</span>
-                                    <span class="long">Tuesday</span>
-                                    <span class="short">Tue</span>
-                                </th>
-                                <th>
-                                    <span class="day">3</span>
-                                    <span class="long">Wednesday</span>
-                                    <span class="short">Wed</span>
-                                </th>
-                                <th>
-                                    <span class="day">4</span>
-                                    <span class="long">Thursday</span>
-                                    <span class="short">Thurs</span>
-                                </th>
-                                <th>
-                                    <span class="day">5</span>
-                                    <span class="long">Friday</span>
-                                    <span class="short">Fri</span>
-                                </th>
-                                <th>
-                                    <span class="day">6</span>
-                                    <span class="long">Saturday</span>
-                                    <span class="short">Sat</span>
-                                </th>
-                                <th>
-                                    <span class="day">7</span>
-                                    <span class="long">Sunday</span>
-                                    <span class="short">Sun</span>
-                                </th>
+                                @foreach ($weeklyData['week'] as $week)
+                                    <th>
+                                        <span class="day">{{ $week->date }}</span>
+                                        <span class="long">{{ $week->day }}</span>
+                                        <span class="short">{{ $week->day_abbr }}</span>
+                                    </th>    
+                                @endforeach
                                 <th>JA Time</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>08:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>09:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>09:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>10:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td class="hour" rowspan="2"><span>10:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>11:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>11:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>12:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>12:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>01:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>01:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>02:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>02:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>03:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>03:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>04:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>04:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>05:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>05:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>06:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="hour" rowspan="2"><span>06:00</span></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="hour" rowspan="2"><span>07:00</span></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @foreach ($weeklyData['time'] as $raw_time)
+                                <tr>
+                                    <td class="hour">
+                                        <span>
+                                            {{ $raw_time['time'] }}
+                                        </span>
+                                    </td>
+                                    @foreach ($weeklyData['week_dates'] as $each_date)
+                                        @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
+                                            <td class="td-schedule" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
+                                                @foreach ($raw_time[$each_date->format('Y-m-d')]->data as $data)
+                                                    <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-success lessonTrigger">{{ $data->student_info->name." | ".$data->teacher_info->name }}</span><br/>
+                                                @endforeach
+                                            </td>
+                                        @else
+                                            <td onclick="" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}" title="{{ $each_date->format('Y-m-d')." ".$raw_time['time']  }}"></td>
+                                        @endif
+                                    @endforeach
+                                    <td class="hour">
+                                        <span>
+                                            @php
+                                                echo App\Helpers\Constant::JA_TIME[$raw_time['time']];
+                                            @endphp
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
+                    <nav aria-label="Schedule Navigation Panel">
+                        <ul class="pagination float-right pagination-schedule">
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.search_date', ['date' => $weeklyData['prev_week_range']]) }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.index') }}">Now</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route ('admin.lessons_calendar.student.search_date', ['date' => $weeklyData['next_week_range']]) }}">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </section>
 </div>
 
+@include('admin.modals.teacher_lessons')
 @include('templates.footer')
 
 <script src="{{ asset('js/admin/lessonsStudent.js') }}"></script>
