@@ -21,15 +21,15 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item has-treeview menu-open">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin')) ? 'active' : null }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview {{ Request::segment(2) === 'lessons_calendar' ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ Request::segment(2) === 'lessons_calendar' ? 'active' : null }}">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Lessons Calendar
@@ -51,8 +51,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview {{ Request::segment(2) === 'users' ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ Request::segment(2) === 'users' ? 'active' : null }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users Management
@@ -81,7 +81,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('admin.salary.index') }}" class="nav-link">
+                    <a href="{{ route('admin.salary.index') }}" class="nav-link {{ Request::segment(2) === 'salary' ? 'active' : null }}">
                         <i class="nav-icon fas fa-money-check-alt"></i>
                         <p>
                             Salary Management

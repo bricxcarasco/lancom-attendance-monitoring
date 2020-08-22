@@ -53,10 +53,19 @@ Route::middleware('global')->group(function() {
     
     Route::middleware('teacher')->prefix('teacher')->group(function() {
         Route::get('/', 'Teacher\TeacherController@index')->name('teacher.dashboard');
+        Route::get('/profile', 'Teacher\TeacherController@profile')->name('teacher.profile');
+        Route::get('/salary', 'Teacher\TeacherController@salary')->name('teacher.salary');
+        Route::get('/{date}', 'Teacher\TeacherController@searchScheduleWithDate')->name('teacher.search_date');
+        Route::get('/lesson/{id}', 'Teacher\TeacherController@searchLesson')->name('teacher.lesson');
+        Route::get('/schedule/{id}', 'Teacher\TeacherController@searchSchedule')->name('teacher.schedule');
     });
     
     Route::middleware('student')->prefix('student')->group(function() {
         Route::get('/', 'Student\StudentController@index')->name('student.dashboard');
+        Route::get('/profile', 'Student\StudentController@profile')->name('student.profile');
+        Route::get('/{date}', 'Student\StudentController@searchLessonWithDate')->name('student.search_date');
+        Route::get('/lesson/{id}', 'Student\StudentController@searchLesson')->name('student.lesson');
+        Route::get('/schedule/{id}', 'Student\StudentController@searchSchedule')->name('student.schedule');
     });
 });
 

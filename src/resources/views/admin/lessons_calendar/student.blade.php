@@ -70,7 +70,7 @@
                                         @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
                                             <td class="td-schedule" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
                                                 @foreach ($raw_time[$each_date->format('Y-m-d')]->data as $data)
-                                                    <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-success lessonTrigger">{{ $data->student_info->name." | ".$data->teacher_info->name }}</span><br/>
+                                                    <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-success lessonTrigger">{{ $data->student_info->name." | ".$data->teacher_info->name }}</span>
                                                 @endforeach
                                             </td>
                                         @else

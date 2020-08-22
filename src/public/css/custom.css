@@ -26,6 +26,7 @@
 }
 
 .badge-calendar {
+    margin: 5px;
     display:block; 
     white-space: normal; 
     word-wrap:break-word;

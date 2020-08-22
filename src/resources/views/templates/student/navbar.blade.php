@@ -12,7 +12,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('admin.dashboard') }}" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('student.dashboard') }}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -21,73 +21,23 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item has-treeview menu-open">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+                <a href="{{ route('student.dashboard') }}" class="nav-link {{ (request()->is('student')) ? 'active' : null }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
+                
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                    <a href="{{ route('student.profile') }}" class="nav-link {{ Request::segment(2) === 'profile' ? 'active' : null }}">
+                        <i class="nav-icon fas fa-user-circle"></i>
                         <p>
-                            Lessons Calendar
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.lessons_calendar.teacher.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Instructor Calendar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.lessons_calendar.student.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Student Calendar</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Users Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.administrator.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Administrator</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.teacher.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Instructor</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.student.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Student</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('admin.salary.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-money-check-alt"></i>
-                        <p>
-                            Salary Management
+                            Profile
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item has-treeview">
                     <form id="logout-user-form" action="{{ route('logout.auth') }}" method="POST">
                         @csrf
