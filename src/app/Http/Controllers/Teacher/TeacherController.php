@@ -8,12 +8,13 @@ use App\Lesson;
 use App\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
     public function index() {
         $date = Carbon::now()->format('Y-m-d');
-        $weeklyData = CalendarController::getTeacherWeekList($date);
+        $weeklyData = CalendarController::getTeacherWeekList($date, Auth::user()->id);
         return view('teacher.dashboard', compact('weeklyData'));
     }
 
@@ -27,7 +28,7 @@ class TeacherController extends Controller
 
     public function searchScheduleWithDate(Request $request, $date)
     {
-        $weeklyData = CalendarController::getTeacherWeekList($date);
+        $weeklyData = CalendarController::getTeacherWeekList($date, Auth::user()->id);
         return view('teacher.dashboard', compact('weeklyData'));
     }
 

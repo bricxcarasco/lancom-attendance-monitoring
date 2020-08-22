@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Lesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
     public function index() 
     {
         $date = Carbon::now()->format('Y-m-d');
-        $weeklyData = CalendarController::getStudentWeekList($date);
+        $weeklyData = CalendarController::getStudentWeekList($date, Auth::user()->id);
         return view('student.dashboard', compact('weeklyData'));
     }
 
@@ -23,7 +24,7 @@ class StudentController extends Controller
 
     public function searchLessonWithDate(Request $request, $date)
     {
-        $weeklyData = CalendarController::getStudentWeekList($date);
+        $weeklyData = CalendarController::getStudentWeekList($date, Auth::user()->id);
         return view('student.dashboard', compact('weeklyData'));
     }
 

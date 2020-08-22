@@ -13,7 +13,7 @@ use Carbon\CarbonPeriod;
 
 class CalendarController extends Controller
 {
-    public static function getTeacherWeekList($date)
+    public static function getTeacherWeekList($date, $user_id = null)
     {
         $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
         $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
@@ -42,8 +42,18 @@ class CalendarController extends Controller
         foreach(Constant::PH_TIME AS $time) {
             $timeData[$time]['time'] = $time;
             foreach ($period as $date) {
-                $schedules = Schedule::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
-                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
+
+                $schedules = Schedule::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time);
+                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time);
+
+                if ($user_id !== null) {
+                    $schedules = $schedules->where('user_id', $user_id);
+                   $lessons = $lessons->where('teacher_id', $user_id);
+                }
+
+                $schedules = $schedules->get();
+                $lessons = $lessons->get();
+
                 $merged_schedules_lessons = $schedules->merge($lessons);
                 if (count($merged_schedules_lessons) > 0) {
                     $newTimeClass = new Time();
@@ -61,7 +71,7 @@ class CalendarController extends Controller
         return $weeklyData;
     }
 
-    public static function getStudentWeekList($date)
+    public static function getStudentWeekList($date, $user_id = null)
     {
         $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
         $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
@@ -90,7 +100,14 @@ class CalendarController extends Controller
         foreach(Constant::PH_TIME AS $time) {
             $timeData[$time]['time'] = $time;
             foreach ($period as $date) {
-                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time)->get();
+
+                $lessons = Lesson::where('schedule_date', $date->format('Y-m-d'))->where('schedule_time', $time);
+
+                if ($user_id !== null)
+                    $lessons = $lessons->where('student_id', $user_id);
+                
+                $lessons = $lessons->get();
+
                 if (count($lessons) > 0) {
                     $newTimeClass = new Time();
                     $newTimeClass->date = $date->format('Y-m-d');
