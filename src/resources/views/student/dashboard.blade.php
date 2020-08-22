@@ -1,4 +1,4 @@
-@include('templates.header')
+@include('templates.student.header')
 
 <div class="content-wrapper">
 
