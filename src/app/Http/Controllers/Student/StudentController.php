@@ -19,7 +19,8 @@ class StudentController extends Controller
     }
 
     public function profile() {
-        return view('student.profile');
+        $user = Auth::user();
+        return view('student.profile', compact('user'));
     }
 
     public function searchLessonWithDate(Request $request, $date)

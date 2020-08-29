@@ -5,7 +5,8 @@ Route::post('login', 'Auth\LoginController@login')->name('login.auth');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout.auth');
 
 Route::middleware('global')->group(function() {
-    Route::get('/', 'Auth\LoginController@index');
+    Route::get('/', 'Auth\LoginController@index')->name('index');
+    Route::post('/profile/update', 'Admin\AdminController@profileUpdate')->name('profile.update');
 
     Route::middleware('admin')->prefix('admin')->group(function() {
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
