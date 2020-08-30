@@ -6,6 +6,8 @@ class Constant {
 
     const ERROR_UNAUTHORIZED = "You are unauthorized to access this system";
     const ERROR_SERVER = "Request cannot processed due to internal server error";
+    
+    const PROFILE_UPDATED = "Profile information has been updated";
 
     const GENDER = [
         1 => 'Male',

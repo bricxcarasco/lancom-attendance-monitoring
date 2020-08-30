@@ -3,5 +3,4 @@ $(document).ready(function() {
         $("#a-personal-info").addClass('active');
         $("#a-activity").removeClass('active');
     });
-
 });

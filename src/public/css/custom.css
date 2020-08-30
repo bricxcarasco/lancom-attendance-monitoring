@@ -31,3 +31,7 @@
     white-space: normal; 
     word-wrap:break-word;
 }
+
+.profile-user-img {
+    height: 100px;
+}

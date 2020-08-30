@@ -30,8 +30,7 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                    src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('images').'/'.$user->image }}" alt="User profile picture">
                             </div>
 
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
@@ -295,9 +294,8 @@
 @include('templates.footer')
 
 <script type="text/javascript">
-    var user = {!! json_encode($user->toArray()) !!};
+    let user = {!! json_encode($user->toArray()) !!};
     document.getElementById('gender').value = user.gender;
-    console.log(user.gender);
 </script>
 <script src="{{ asset('js/student/profile.js') }}"></script>
 
