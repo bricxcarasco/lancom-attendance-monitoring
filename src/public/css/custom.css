@@ -1,3 +1,7 @@
+.logout-user-link:hover {
+    cursor: pointer;
+}
+
 .error-span-message {
     color: red;
     font-style: italic;

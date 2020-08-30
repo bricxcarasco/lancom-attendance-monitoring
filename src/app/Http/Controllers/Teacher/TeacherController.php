@@ -19,7 +19,8 @@ class TeacherController extends Controller
     }
 
     public function profile() {
-        return view('teacher.profile');
+        $user = Auth::user();
+        return view('teacher.profile', compact('user'));
     }
 
     public function salary() {

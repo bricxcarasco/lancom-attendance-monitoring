@@ -89,6 +89,14 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.profile') }}" class="nav-link {{ Request::segment(2) === 'profile' ? 'active' : null }}">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
                     <form id="logout-user-form" action="{{ route('logout.auth') }}" method="POST">
                         @csrf
                         <a class="nav-link logout-user-link">

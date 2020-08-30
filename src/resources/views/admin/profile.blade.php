@@ -1,4 +1,4 @@
-@include('templates.teacher.header')
+@include('templates.header')
 
 <link rel="stylesheet" href="{{ asset('css/weekCalendar.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -30,8 +30,7 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                    src="{{ asset('images').'/'.$user->image }}" alt="User profile picture">
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('images').'/'.$user->image }}" alt="User profile picture">
                             </div>
 
                             <h3 class="profile-username text-center">{{ $user->name }}</h3>
@@ -53,16 +52,15 @@
                                 </li>
                             </ul>
 
-                            <a href="#personal_info" id="edit" data-toggle="tab"
-                                class="btn btn-warning btn-block"><b>Edit</b></a>
+                            <a href="#personal_info" id="edit" data-toggle="tab" class="btn btn-warning btn-block"><b>Edit</b></a>
                         </div>
                     </div>
-
+                    
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">About Me</h3>
                         </div>
-
+                        
                         <div class="card-body">
                             <strong><i class="fas fa-book mr-1"></i> Education</strong>
                             <p class="text-muted">
@@ -89,33 +87,31 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#activity" id="a-activity"
-                                        data-toggle="tab">Activity</a>
+                                    <a class="nav-link active" href="#activity" id="a-activity" data-toggle="tab">Activity</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#personal_info" id="a-personal-info"
-                                        data-toggle="tab">Personal Information</a>
+                                    <a class="nav-link" href="#personal_info" id="a-personal-info" data-toggle="tab">Personal Information</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
-
+                                    
                                     <div class="timeline timeline-inverse">
-
+                                        
                                         <div class="time-label">
                                             <span class="bg-danger">
                                                 10 Feb. 2014
                                             </span>
                                         </div>
-
+                                        
                                         <div>
                                             <i class="fas fa-envelope bg-primary"></i>
 
@@ -137,7 +133,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div>
                                             <i class="fas fa-user bg-info"></i>
 
@@ -149,7 +145,7 @@
                                                 </h3>
                                             </div>
                                         </div>
-
+                                        
                                         <div>
                                             <i class="fas fa-comments bg-warning"></i>
 
@@ -169,13 +165,13 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="time-label">
                                             <span class="bg-success">
                                                 3 Jan. 2014
                                             </span>
                                         </div>
-
+                                        
                                         <div>
                                             <i class="fas fa-camera bg-purple"></i>
 
@@ -193,41 +189,38 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div>
                                             <i class="far fa-clock bg-gray"></i>
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="tab-pane" id="personal_info">
-                                    <form class="form-horizontal" method="POST" action="{{ route('profile.update') }}"
-                                        enctype="multipart/form-data">
+                                    <form class="form-horizontal" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $user->id }}">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->name }}"
-                                                    id="name" name="name" placeholder="Name">
+                                                <input type="text" class="form-control" value="{{ $user->name }}" id="name" name="name" placeholder="Name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" value="{{ $user->email }}"
-                                                    id="email" name="email" placeholder="Email">
+                                                <input type="email" class="form-control" value="{{ $user->email }}" id="email" name="email" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName2" class="col-sm-2 col-form-label">Birthdate</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" value="{{ $user->birthdate }}"
-                                                    id="birthdate" name="birthdate" placeholder="Birthdate">
+                                                <input type="date" class="form-control" value="{{ $user->birthdate }}" id="birthdate" name="birthdate" placeholder="Birthdate">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputExperience" class="col-sm-2 col-form-label">Gender</label>
+                                            <label for="inputExperience"
+                                                class="col-sm-2 col-form-label">Gender</label>
                                             <div class="col-sm-10">
                                                 <select name="gender" id="gender" class="form-control">
                                                     <option value="1">Male</option>
@@ -238,21 +231,18 @@
                                         <div class="form-group row">
                                             <label for="inputName2" class="col-sm-2 col-form-label">Contact</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->contact }}"
-                                                    id="contact" name="contact" placeholder="Contact">
+                                                <input type="text" class="form-control" value="{{ $user->contact }}" id="contact" name="contact" placeholder="Contact">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName2" class="col-sm-2 col-form-label">Address</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->address }}"
-                                                    id="address" name="address" placeholder="Address">
+                                                <input type="text" class="form-control" value="{{ $user->address }}" id="address" name="address" placeholder="Address">
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="form-group row">
-                                            <label for="inputSkills" class="col-sm-2 col-form-label">Profile
-                                                Image</label>
+                                            <label for="inputSkills" class="col-sm-2 col-form-label">Profile Image</label>
                                             <div class="col-sm-10">
                                                 <input type="file" id="image_upload" name="image_upload">
                                             </div>
@@ -260,29 +250,25 @@
                                         <div class="form-group row">
                                             <label for="inputSkills" class="col-sm-2 col-form-label">Bio</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->bio }}"
-                                                    id="bio" name="bio" placeholder="Skills">
+                                                <input type="text" class="form-control" value="{{ $user->bio }}" id="bio" name="bio" placeholder="Skills">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputSkills" class="col-sm-2 col-form-label">Education</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->education }}"
-                                                    id="education" name="education" placeholder="Bio">
+                                                <input type="text" class="form-control" value="{{ $user->education }}" id="education" name="education" placeholder="Bio">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="{{ $user->skills }}"
-                                                    id="skills" name="skills" placeholder="Skills">
+                                                <input type="text" class="form-control" value="{{ $user->skills }}" id="skills" name="skills" placeholder="Skills">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputSkills" class="col-sm-2 col-form-label">Notes</label>
                                             <div class="col-sm-10">
-                                                <textarea name="notes" id="notes" cols="30" rows="5"
-                                                    class="form-control">{{ $user->notes }}</textarea>
+                                                <textarea name="notes" id="notes" cols="30" rows="5" class="form-control">{{ $user->notes }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -291,15 +277,15 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
+                                </div>            
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
-
+                
             </div>
-
+            
         </div>
     </section>
 </div>
@@ -311,6 +297,7 @@
     let user = {!! json_encode($user->toArray()) !!};
     document.getElementById('gender').value = user.gender;
 </script>
-<script src="{{ asset('js/teacher/profile.js') }}"></script>
+<script src="{{ asset('js/admin/profile.js') }}"></script>
+
 
 @include('templates.footer-end')

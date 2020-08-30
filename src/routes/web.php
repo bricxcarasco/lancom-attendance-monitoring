@@ -10,6 +10,7 @@ Route::middleware('global')->group(function() {
 
     Route::middleware('admin')->prefix('admin')->group(function() {
         Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
+        Route::get('/profile', 'Admin\AdminController@profile')->name('admin.profile');
         Route::prefix('lessons_calendar')->group(function() {
             Route::get('/teacher', 'Admin\LessonTeacherController@index')->name('admin.lessons_calendar.teacher.index');
             Route::get('/teacher/{date}', 'Admin\LessonTeacherController@searchScheduleWithDate')->name('admin.lessons_calendar.teacher.search_date');

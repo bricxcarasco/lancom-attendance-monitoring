@@ -17,7 +17,7 @@ class AlterTableUsersAddVariousFields2 extends Migration
             $table->string('lancon_id')->nullable()->after('id');
             $table->string('gender')->nullable()->after('birthdate');
             $table->string('salary_rate')->nullable()->after('password');
-            $table->text('image')->nullable()->after('salary_rate');
+            $table->string('image')->nullable()->default('default-profile-pic.png')->after('salary_rate');
         });
     }
 
@@ -32,7 +32,7 @@ class AlterTableUsersAddVariousFields2 extends Migration
             $table->string('lancon_id')->nullable()->after('id');
             $table->string('gender')->nullable()->after('birthdate');
             $table->string('salary_rate')->nullable()->after('password');
-            $table->text('image')->nullable()->after('salary_rate');
+            $table->string('image')->nullable()->default('default-profile-pic.png')->after('salary_rate');
         });
     }
 }
