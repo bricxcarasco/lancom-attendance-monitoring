@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Activity;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Controller;
 use App\Lesson;
@@ -20,7 +21,8 @@ class StudentController extends Controller
 
     public function profile() {
         $user = Auth::user();
-        return view('student.profile', compact('user'));
+        $activities = Activity::getActivities($user->id);
+        return view('student.profile', compact('user', 'activities'));
     }
 
     public function searchLessonWithDate(Request $request, $date)

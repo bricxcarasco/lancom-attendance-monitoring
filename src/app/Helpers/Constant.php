@@ -96,5 +96,23 @@ class Constant {
         4 => 'info',
         5 => 'danger'
     ];
+
+    const ACTIVITY_TYPE = [
+        // User / Profile / Password
+        1 => [
+            'class' => 'info',
+            'image' => 'fa-user bg-info'
+        ],
+        // Calendar Info
+        2 => [
+            'class' => 'warning',
+            'image' => 'fa-calendar-alt bg-warning'
+        ],
+        // Salary Management
+        3 => [
+            'class' => 'primary',
+            'image' => 'fa-money-check-alt bg-primary'
+        ]
+    ];
     
 }
