@@ -9,6 +9,12 @@ class Constant {
     
     const PROFILE_UPDATED = "Profile information has been updated";
 
+    const USER_TYPE = [
+        'ADMIN' => 1,
+        'TEACHER' => 2,
+        'STUDENT' => 3
+    ];
+
     const GENDER = [
         1 => 'Male',
         2 => 'Female'
@@ -70,6 +76,12 @@ class Constant {
         "04:00" => "05:00",
         "05:00" => "06:00",
         "06:00" => "07:00"
+    ];
+
+    const LEAVE_DAY_CATEGORY = [
+        1 => 'Whole Day',
+        2 => 'Half-day Morning',
+        3 => 'Half-day Afternoon'
     ];
 
     const LEAVE_TYPE = [

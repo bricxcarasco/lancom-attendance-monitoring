@@ -68,7 +68,12 @@
                                     </td>
                                     @foreach ($weeklyData['week_dates'] as $each_date)
                                         @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
-                                            <td class="td-schedule" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}">
+                                            <td 
+                                                class="td-schedule {{ $weeklyData['week'][$each_date->format('Y-m-d')]->date_class }}" 
+                                                id="" 
+                                                data-date="{{ $each_date->format('Y-m-d') }}" 
+                                                data-time="{{ $raw_time['time'] }}">
+
                                                 @foreach ($raw_time[$each_date->format('Y-m-d')]->data as $data)
                                                     @if (isset($data->units))
                                                         <span onclick="lessonTrigger(this.id)" id="{{ $data->id }}" class="badge-calendar badge badge-pill badge-info lessonTrigger">{{ $data->user->name }}</span>
@@ -78,7 +83,13 @@
                                                 @endforeach
                                             </td>
                                         @else
-                                            <td onclick="" id="" data-date="{{ $each_date->format('Y-m-d') }}" data-time="{{ $raw_time['time'] }}" title="{{ $each_date->format('Y-m-d')." ".$raw_time['time']  }}"></td>
+                                            <td 
+                                                class="{{ $weeklyData['week'][$each_date->format('Y-m-d')]->date_class }}"
+                                                id=""
+                                                data-date="{{ $each_date->format('Y-m-d') }}" 
+                                                data-time="{{ $raw_time['time'] }}" 
+                                                title="{{ $each_date->format('Y-m-d')." ".$raw_time['time']  }}"
+                                            ></td>
                                         @endif
                                     @endforeach
                                     <td class="hour">

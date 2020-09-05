@@ -10,11 +10,13 @@ use App\Lesson;
 use App\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
     public static function getTeacherWeekList($date, $user_id = null)
     {
+        $user = Auth::user();
         $carbonDate = Carbon::createFromFormat("Y-m-d", $date);
         $currentFirstDayOfWeek = Carbon::parse($carbonDate->startOfWeek())->format('Y-m-d');
         $currentEndDayOfWeek = Carbon::parse($carbonDate->endOfWeek())->format('Y-m-d');
@@ -30,11 +32,20 @@ class CalendarController extends Controller
         $weeklyData['ph_time_range'] = Constant::PH_TIME;
         $weeklyData['date_today'] = Carbon::now()->format('Y-m-d');
         foreach ($period as $date) {
+            $date_class = 'disable_click_td';
             $week = new Week();
             $week->date = $date->format('Y-m-d');
             $week->day = $date->format('l');
             $week->day_number = Constant::DAYS_IN_NUMBER[$date->format('l')];
             $week->day_abbr = Constant::DAYS_ABBR[$date->format('l')];
+            if ($user->user_type === Constant::USER_TYPE['ADMIN']) {
+                $date_class = 'disable_admin';
+            } else {
+                if ($date->format('Y-m-d') > Carbon::now()->format('Y-m-d')) {
+                    $date_class = 'enable_click_td';
+                }
+            }
+            $week->date_class = $date_class;
             $weeklyData['week'][$date->format('Y-m-d')] = $week;
         }
 

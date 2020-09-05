@@ -39,3 +39,17 @@
 .profile-user-img {
     height: 100px;
 }
+
+.disable_admin {
+
+}
+
+.disable_click_td {
+    background: #868f96;
+    cursor: auto;
+}
+
+.enable_click_td {
+    background: #d1d5db;;
+    cursor: hand;
+}

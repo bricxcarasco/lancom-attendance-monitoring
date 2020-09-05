@@ -3,7 +3,15 @@ $(function () {
 });
 
 $(document).ready(function() {
-    
+    $('.enable_click_td').click(function() {
+        $('#add-teacher-schedule').modal('show');
+        $('#add-teacher-schedule .add-schedule-date').text($(this).data('date'));
+        $('#add-teacher-schedule #date').val($(this).data('date'));
+    });
+
+    $('#add-teacher-schedule').on('click', '.btn-modal-add-schedule', function() {
+        $('form#addTeacherSchedule').submit();
+    });
 });
 
 function lessonTrigger(id) {

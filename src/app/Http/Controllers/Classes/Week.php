@@ -8,5 +8,6 @@ class Week
     public $day;
     public $day_number;
     public $day_abbr;
+    public $date_class;
     public $schedule = [];
 }

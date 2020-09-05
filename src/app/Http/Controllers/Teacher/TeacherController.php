@@ -42,4 +42,10 @@ class TeacherController extends Controller
     {
         return Schedule::find($id);
     }
+
+    public function addSchedule(Request $request)
+    {
+        $user = Auth::user();
+        return [ $user, $request->all() ];
+    }
 }
