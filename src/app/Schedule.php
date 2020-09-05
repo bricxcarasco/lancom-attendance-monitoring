@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    protected $fillable = [
+        'user_id', 'schedule_datetime', 'schedule_date', 'schedule_time', 'status', 'reason'
+    ];
+
     protected $hidden = [
         'created_at', 'updated_at',
     ];
@@ -46,5 +50,14 @@ class Schedule extends Model
     public function getDateFiledAttribute()
     {
         return Carbon::parse($this->created_at)->format('M d, Y H:i A - l').' | '.$this->created_at->diffForHumans();
+    }
+
+    public static function checkTeacherScheduleIfExists($user_id, $date, $time)
+    {
+        $schedule = Schedule::where('user_id', $user_id)->where('schedule_date', $date)->where('schedule_time', $time)->where('is_delete', 0)->first();
+        if ($schedule) {
+            return true;
+        }
+        return false;
     }
 }

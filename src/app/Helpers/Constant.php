@@ -8,6 +8,7 @@ class Constant {
     const ERROR_SERVER = "Request cannot processed due to internal server error";
     
     const PROFILE_UPDATED = "Profile information has been updated";
+    const SCHEDULE_ADDED = "Schedule already been set";
 
     const USER_TYPE = [
         'ADMIN' => 1,
@@ -125,6 +126,12 @@ class Constant {
             'class' => 'primary',
             'image' => 'fa-money-check-alt bg-primary'
         ]
+    ];
+
+    const LEAVE_DAYS_LIST = [
+        1 => ['08:00', '09:00', '10:00', '11:00', '12:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00'],
+        2 => ['08:00', '09:00', '10:00', '11:00', '12:00'],
+        3 => ['01:00', '02:00', '03:00', '04:00', '05:00', '06:00']
     ];
     
 }

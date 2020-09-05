@@ -69,7 +69,7 @@
                                     @foreach ($weeklyData['week_dates'] as $each_date)
                                         @if (array_key_exists($each_date->format('Y-m-d'), $raw_time))
                                             <td 
-                                                class="td-schedule {{ $weeklyData['week'][$each_date->format('Y-m-d')]->date_class }}" 
+                                                class="td-schedule" 
                                                 id="" 
                                                 data-date="{{ $each_date->format('Y-m-d') }}" 
                                                 data-time="{{ $raw_time['time'] }}">
