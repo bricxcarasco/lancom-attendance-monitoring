@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Helpers\Constant;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ScheduleGroup extends Model
@@ -29,5 +31,40 @@ class ScheduleGroup extends Model
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function getScheduleDateTextAttribute()
+    {
+        return Carbon::parse($this->schedule_date)->format('M d, Y | l');
+    }
+
+    public function getUserInfoAttribute()
+    {
+        return $this->user;
+    }
+
+    public function getScheduleCategoryTextAttribute()
+    {
+        return Constant::LEAVE_DAY_CATEGORY[$this->schedule_category];
+    }
+
+    public function getScheduleCategoryClassAttribute()
+    {
+        return Constant::LEAVE_DAY_CATEGORY_CLASS[$this->schedule_category];
+    }
+
+    public function getLeaveTypeAttribute()
+    {
+        return Constant::LEAVE_TYPE[$this->status];
+    }
+
+    public function getIsEditedAttribute()
+    {
+        return Carbon::parse($this->schedule_date)->format('Y-m-d') > Carbon::now()->format('Y-m-d') ? true : false;
+    }
+
+    public function getDateFiledAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('M d, Y H:i A - l').' | '.$this->created_at->diffForHumans();
     }
 }

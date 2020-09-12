@@ -56,6 +56,7 @@ Route::middleware('global')->group(function() {
     Route::middleware('teacher')->prefix('teacher')->group(function() {
         Route::get('/', 'Teacher\TeacherController@index')->name('teacher.dashboard');
         Route::post('/schedule', 'Teacher\TeacherController@addSchedule')->name('teacher.schedule.add');
+        Route::put('/schedule', 'Teacher\TeacherController@updateSchedule')->name('teacher.schedule.edit');
         Route::get('/profile', 'Teacher\TeacherController@profile')->name('teacher.profile');
         Route::get('/salary', 'Teacher\TeacherController@salary')->name('teacher.salary');
         Route::get('/{date}', 'Teacher\TeacherController@searchScheduleWithDate')->name('teacher.search_date');

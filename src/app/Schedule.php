@@ -34,7 +34,7 @@ class Schedule extends Model
 
     public function schedule_group()
     {
-        return $this->belongsTo(ScheduleGroup::class);
+        return $this->belongsTo(ScheduleGroup::class, 'schedule_group_id', 'id');
     }
 
     public function getUserInfoAttribute()

@@ -12,6 +12,23 @@ $(document).ready(function() {
     $('#add-teacher-schedule').on('click', '.btn-modal-add-schedule', function() {
         $('form#addTeacherSchedule').submit();
     });
+
+    $('#schedule-view-modal').on('click', '.btn-modal-edit-schedule', function() {
+        let schedule = JSON.parse(localStorage.getItem('TeacherSchedule'));
+        $('#schedule-view-modal').modal('hide');
+        $('#edit-teacher-schedule').modal('show');
+        $('#edit-teacher-schedule #edit-id').val(schedule.id);
+        $('#edit-teacher-schedule #edit-date').val(schedule.schedule_date);
+        $('#edit-teacher-schedule .edit-schedule-date').text(schedule.schedule_date_text);
+        $('#edit-teacher-schedule #edit-category').val(schedule.schedule_category);
+        $('#edit-teacher-schedule #edit-status').val(schedule.status);
+        $('#edit-teacher-schedule #edit-reason').val(schedule.reason);
+    });
+
+    $('#edit-teacher-schedule').on('click', '.btn-modal-update-schedule', function() {
+        localStorage.removeItem('TeacherSchedule');
+        $('form#editTeacherSchedule').submit();
+    });
 });
 
 function lessonTrigger(id) {
@@ -47,17 +64,26 @@ function lessonTrigger(id) {
 }
 
 function scheduleTrigger(id) {
+    localStorage.removeItem('TeacherSchedule');
     $.ajax({
         url: `/teacher/schedule/${id}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
+            localStorage.setItem('TeacherSchedule', JSON.stringify(data));
+            console.log(data);
             $('#schedule-view-modal').modal('show');
             $('#schedule-view-modal .schedule-name').text(data.user_info.name);
-            $('#schedule-view-modal .schedule-date').text(data.schedule_datetime);
+            $('#schedule-view-modal .schedule-date').text(data.schedule_date_text);
+            $('#schedule-view-modal .schedule-leave-category').addClass(data.schedule_category_class)
+            $('#schedule-view-modal .schedule-leave-category').text(data.schedule_category_text);
             $('#schedule-view-modal .schedule-leave-type').text(data.leave_type);
             $('#schedule-view-modal .schedule-reason').text(data.reason);
             $('#schedule-view-modal .schedule-date-filed').text(data.date_filed);
+
+            if (data.is_edited === true) {
+                $('#schedule-view-modal .btn-modal-edit-schedule').css('display', 'block');
+            }
         }
     });
 }

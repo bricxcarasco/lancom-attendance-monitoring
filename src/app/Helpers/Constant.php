@@ -9,6 +9,7 @@ class Constant {
     
     const PROFILE_UPDATED = "Profile information has been updated";
     const SCHEDULE_ADDED = "Schedule already been set";
+    const SCHEDULE_UPDATED = "Schedule already been updated";
 
     const USER_TYPE = [
         'ADMIN' => 1,
@@ -83,6 +84,12 @@ class Constant {
         1 => 'Whole Day',
         2 => 'Half-day Morning',
         3 => 'Half-day Afternoon'
+    ];
+
+    const LEAVE_DAY_CATEGORY_CLASS = [
+        1 => 'badge badge-pill badge-success',
+        2 => 'badge badge-pill badge-warning',
+        3 => 'badge badge-pill badge-info'
     ];
 
     const LEAVE_TYPE = [

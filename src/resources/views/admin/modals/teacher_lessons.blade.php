@@ -64,6 +64,74 @@
     </div>
 </div>
 
+<div class="modal fade" id="edit-teacher-schedule">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="fas fa-calendar-times"></i> Update Schedule</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editTeacherSchedule" action="{{ route('teacher.schedule.edit') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="callout callout-warning">
+                        <h6>Date: <span class="schedule-span edit-schedule-date"></span></h6>
+                    </div>
+
+                    <input type="hidden" name="date" id="edit-date">
+                    <input type="hidden" name="id" id="edit-id">
+
+                    <div class="form-group">
+                        <label>Leave Day Category</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <select name="category" id="edit-category" class="form-control">
+                                <option value="1">Whole Day</option>
+                                <option value="2">Half-day Morning</option>
+                                <option value="3">Half-day Afternoon</option>
+                            </select>
+                        </div>
+                        <span class="error-span-message error-add-schedule-category"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leave Type</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-stream"></i></span>
+                            </div>
+                            <select name="status" id="edit-status" class="form-control">
+                                <option value="1">Sick Leave</option>
+                                <option value="2">Vacation Leave</option>
+                                <option value="3">Emergency Leave</option>
+                                <option value="4">Others</option>
+                            </select>
+                        </div>
+                        <span class="error-span-message error-add-schedule-status"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leave Reason</label>
+                        <div class="input-group">
+                            <textarea id="edit-reason" type="text" cols="30" rows="5" class="form-control" name="reason"></textarea>
+                        </div>
+                        <span class="error-span-message error-add-schedule-reason"></span>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-modal-update-schedule">Update Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="lesson-view-modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,6 +182,7 @@
                 <div class="callout callout-info">
                     <h6>Name: <span class="schedule-span schedule-name"></span></h6>
                     <h6>Date: <span class="schedule-span schedule-date"></span></h6>
+                    <h6>Leave Category: <span class="schedule-span schedule-leave-category"></span></h6>
                     <h6>Leave Type: <span class="schedule-span schedule-leave-type"></span></h6>
                     <h6>Reason: <span class="schedule-span schedule-reason"></span></h6>
                     <h6>Date Filed: <span class="schedule-span schedule-date-filed"></span></h6>
@@ -121,6 +190,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" style="display: none;" class="btn btn-primary btn-modal-edit-schedule">Edit Schedule</button>
             </div>
         </div>
     </div>
