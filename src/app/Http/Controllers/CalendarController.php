@@ -71,6 +71,7 @@ class CalendarController extends Controller
                     $newTimeClass->date = $date->format('Y-m-d');
                     $newTimeClass->ph_time = $time;
                     $newTimeClass->ja_time = Constant::JA_TIME[$time];
+                    $newTimeClass->is_edited = Carbon::now()->format('Y-m-d') < $date->format('Y-m-d') ? 1 : 0;
                     $newTimeClass->data = $merged_schedules_lessons;
                     $timeData[$time][$date->format('Y-m-d')] = $newTimeClass;
                 }

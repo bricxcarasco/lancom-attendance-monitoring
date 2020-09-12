@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     protected $fillable = [
-        'user_id', 'schedule_datetime', 'schedule_date', 'schedule_time', 'status', 'reason'
+        'user_id', 'schedule_group_id', 'schedule_datetime', 'schedule_date', 'schedule_time', 'status', 'reason'
     ];
 
     protected $hidden = [

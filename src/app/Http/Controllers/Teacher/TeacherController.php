@@ -62,6 +62,7 @@ class TeacherController extends Controller
                 if (!Schedule::checkTeacherScheduleIfExists($user->id, $request->date, $time)) {
                     Schedule::create([
                         'user_id' => $user->id, 
+                        'schedule_group_id' => $save_schedule_group->id, 
                         'schedule_datetime' => $request->date. " " .$time, 
                         'schedule_date' => $request->date, 
                         'schedule_time' => $time, 
